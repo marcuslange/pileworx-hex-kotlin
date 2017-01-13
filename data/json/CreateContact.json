@@ -1,0 +1,58 @@
+[
+  {
+    "firstName": "Bob",
+    "lastName": "Dobbs",
+    "middleName": "",
+    "addressOne": "555 Main St",
+    "addressTwo": "",
+    "addressCity": "Denver",
+    "addressState": "CO",
+    "addressZip": "80204",
+    "phoneOne": "212",
+    "phoneTwo": "555",
+    "phoneThree": "1212",
+    "email": "bob.dobs@today.com"
+  },
+  {
+    "firstName": "Jimmy",
+    "lastName": "Ray",
+    "middleName": "B.",
+    "addressOne": "212 Elm St",
+    "addressTwo": "",
+    "addressCity": "Tulsa",
+    "addressState": "OK",
+    "addressZip": "74101",
+    "phoneOne": "918",
+    "phoneTwo": "232",
+    "phoneThree": "5656",
+    "email": "jimmy.ray@today.com"
+  },
+  {
+    "firstName": "Phil",
+    "lastName": "Epstein",
+    "middleName": "",
+    "addressOne": "498 Commerce St",
+    "addressTwo": "",
+    "addressCity": "Dallas",
+    "addressState": "TX",
+    "addressZip": "75251",
+    "phoneOne": "214",
+    "phoneTwo": "999",
+    "phoneThree": "8734",
+    "email": "phil.epstein@today.com"
+  },
+  {
+    "firstName": "James",
+    "lastName": "Buford",
+    "middleName": "",
+    "addressOne": "404 W Caddo St",
+    "addressTwo": "",
+    "addressCity": "Las Vegas",
+    "addressState": "NV",
+    "addressZip": "89105",
+    "phoneOne": "702",
+    "phoneTwo": "313",
+    "phoneThree": "2597",
+    "email": "james.buford@today.com"
+  }
+]

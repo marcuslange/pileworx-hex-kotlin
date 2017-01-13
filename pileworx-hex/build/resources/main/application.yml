@@ -1,0 +1,35 @@
+spring:
+  jmx:
+    enabled: false
+  couchbase:
+    bucket:
+      name: default
+    bootstrap-hosts: localhost
+    env:
+      timeouts:
+        connect: 10000
+        key-value: 5000
+        query: 15000
+        socket-connect: 2000
+        view: 15000
+      health:
+        pingid: a47588c9-c503-4bfa-8509-e83a5b2bfaf7
+
+server:
+  port: 8080
+
+management:
+  context-path: /system
+  security:
+    enabled: false
+
+security:
+  user:
+    password: Password1
+
+logging:
+  level:
+    org:
+      springframework: INFO
+      apache:
+        catalina: INFO

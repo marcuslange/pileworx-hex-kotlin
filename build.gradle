@@ -1,0 +1,96 @@
+description = "Spring Boot example using Hexagonal Architecture and Kotlin"
+
+buildscript {
+	ext {
+		kotlinVersion = '1.0.6'
+		springBootVersion = '1.4.1.RELEASE'
+	}
+	repositories {
+        mavenLocal()
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+	}
+}
+
+allprojects {
+	apply plugin: 'kotlin'
+    apply plugin: 'kotlin-spring'
+
+	group = 'io.pileworx.hex'
+    version = '0.0.1-SNAPSHOT'
+
+	repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+	}
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+}
+
+subprojects { subproject ->
+    apply plugin: 'maven'
+
+    dependencies {
+        compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
+        testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    }
+}
+
+project('pileworx-hex') {
+    apply plugin: 'spring-boot'
+
+    springBoot {
+        executable = true
+        buildInfo {
+            additionalProperties = [
+                'buildNumber': project.hasProperty("buildNumber") ? buildNumber : "DEV"
+            ]
+        }
+    }
+
+	dependencies {
+        compile project(':pileworx-hex-port')
+        compile ("org.springframework.boot:spring-boot-starter-logging")
+	}
+}
+
+project('pileworx-hex-port') {
+    dependencies {
+        compile project(':pileworx-hex-app')
+    }
+}
+
+project('pileworx-hex-app') {
+    dependencies {
+        compile project(':pileworx-hex-domain')
+    }
+}
+
+project('pileworx-hex-domain') {
+    dependencies {
+        compile project(':pileworx-hex-common')
+		compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4")
+    }
+}
+
+project('pileworx-hex-common') {
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter-data-couchbase:${springBootVersion}")
+        compile("org.springframework.boot:spring-boot-starter-hateoas:${springBootVersion}")
+        compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+        compile("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
+        compile("org.springframework.boot:spring-boot-starter-amqp:${springBootVersion}")
+        compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+        compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+    }
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '3.3'
+}

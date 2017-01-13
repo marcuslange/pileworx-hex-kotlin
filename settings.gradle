@@ -1,0 +1,7 @@
+rootProject.name = "pileworx-hex-kotlin"
+
+include ':pileworx-hex'
+include ':pileworx-hex-port'
+include ':pileworx-hex-app'
+include ':pileworx-hex-domain'
+include ':pileworx-hex-common'
