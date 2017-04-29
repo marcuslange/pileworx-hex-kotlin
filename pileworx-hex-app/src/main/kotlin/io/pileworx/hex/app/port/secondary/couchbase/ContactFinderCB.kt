@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 import java.io.IOException
 
 @Service("contactFinder")
-open class ContactFinderCB(
+class ContactFinderCB(
         private val bucket: Bucket,
         private val jsonMapper: ObjectMapper):
     ContactFinder {
