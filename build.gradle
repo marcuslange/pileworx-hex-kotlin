@@ -2,8 +2,8 @@ description = "Spring Boot example using Hexagonal Architecture and Kotlin"
 
 buildscript {
 	ext {
-		kotlinVersion = '1.0.6'
-		springBootVersion = '1.4.1.RELEASE'
+		kotlinVersion = '1.1.2'
+		springBootVersion = '1.5.3.RELEASE'
 	}
 	repositories {
         mavenLocal()
@@ -31,33 +31,32 @@ allprojects {
 
 	sourceCompatibility = 1.8
 	targetCompatibility = 1.8
-}
-
-subprojects { subproject ->
-    apply plugin: 'maven'
 
     dependencies {
         compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
+        compile('javax.inject:javax.inject:1')
         testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     }
 }
 
-project('pileworx-hex') {
-    apply plugin: 'spring-boot'
+apply plugin: 'spring-boot'
 
-    springBoot {
-        executable = true
-        buildInfo {
-            additionalProperties = [
+springBoot {
+    executable = true
+    buildInfo {
+        additionalProperties = [
                 'buildNumber': project.hasProperty("buildNumber") ? buildNumber : "DEV"
-            ]
-        }
+        ]
     }
+}
 
-	dependencies {
-        compile project(':pileworx-hex-port')
-        compile ("org.springframework.boot:spring-boot-starter-logging")
-	}
+dependencies {
+    compile project(':pileworx-hex-port')
+    compile ("org.springframework.boot:spring-boot-starter-logging")
+}
+
+subprojects { subproject ->
+    apply plugin: 'maven'
 }
 
 project('pileworx-hex-port') {
@@ -75,7 +74,7 @@ project('pileworx-hex-app') {
 project('pileworx-hex-domain') {
     dependencies {
         compile project(':pileworx-hex-common')
-		compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4")
+		compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.8.8")
     }
 }
 
@@ -92,5 +91,5 @@ project('pileworx-hex-common') {
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '3.3'
+	gradleVersion = '3.5'
 }

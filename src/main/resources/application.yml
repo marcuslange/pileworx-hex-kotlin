@@ -1,10 +1,14 @@
 spring:
   jmx:
     enabled: false
+  rabbitmq:
+    host: pileworx.dev
+    username: test
+    password: test
   couchbase:
     bucket:
-      name: default
-    bootstrap-hosts: localhost
+      name: hex
+    bootstrap-hosts: pileworx.dev
     env:
       timeouts:
         connect: 10000

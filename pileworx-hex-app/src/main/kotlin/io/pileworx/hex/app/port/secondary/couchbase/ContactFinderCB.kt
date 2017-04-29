@@ -8,9 +8,10 @@ import io.pileworx.hex.app.dto.ContactSummaryDto
 import io.pileworx.hex.app.finder.ContactFinder
 import io.pileworx.hex.common.domain.RepositoryException
 import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 import java.io.IOException
 
-@Component("contactFinder")
+@Service("contactFinder")
 open class ContactFinderCB(
         private val bucket: Bucket,
         private val jsonMapper: ObjectMapper):

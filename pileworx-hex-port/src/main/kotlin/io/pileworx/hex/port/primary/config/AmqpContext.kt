@@ -13,29 +13,10 @@ import org.springframework.context.annotation.Configuration
 import javax.annotation.Resource
 
 @Configuration
-class AmqpContext(
-        private val connectionFactory: ConnectionFactory,
-        private val halObjectMapper: ObjectMapper) {
-
-    @Bean
-    fun rabbitListenerContainerFactory(): SimpleRabbitListenerContainerFactory {
-        val factory = SimpleRabbitListenerContainerFactory()
-        factory.setConnectionFactory(connectionFactory)
-        factory.setMessageConverter(jackson2JsonMessageConverter())
-        return factory
-    }
-
-    @Bean
-    fun rabbitTemplate(): AmqpTemplate {
-        val template = RabbitTemplate(connectionFactory)
-        template.messageConverter = jackson2JsonMessageConverter()
-        return template
-    }
+class AmqpContext(private val halObjectMapper: ObjectMapper) {
 
     @Bean
     fun jackson2JsonMessageConverter(): MessageConverter {
-        val converter = Jackson2JsonMessageConverter()
-        converter.setJsonObjectMapper(halObjectMapper)
-        return converter
+        return Jackson2JsonMessageConverter(halObjectMapper)
     }
 }

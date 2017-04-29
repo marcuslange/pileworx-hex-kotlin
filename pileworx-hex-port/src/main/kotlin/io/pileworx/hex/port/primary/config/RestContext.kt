@@ -20,9 +20,6 @@ import javax.annotation.Resource
 @Configuration
 open class RestContext : WebMvcConfigurerAdapter() {
 
-    @Resource(name = "_halObjectMapper")
-    lateinit var halObjectMapper: ObjectMapper
-
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
                 .allowedOrigins("*")
@@ -33,7 +30,7 @@ open class RestContext : WebMvcConfigurerAdapter() {
     }
 
     @Bean
-    open fun mappingJackson2HttpMessageConverter(): MappingJackson2HttpMessageConverter {
+    open fun mappingJackson2HttpMessageConverter(halObjectMapper: ObjectMapper): MappingJackson2HttpMessageConverter {
         halObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
         halObjectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
         halObjectMapper.registerModule(SimpleModule())
