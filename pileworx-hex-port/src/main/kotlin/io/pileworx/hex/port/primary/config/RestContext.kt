@@ -37,7 +37,6 @@ class RestContext : WebMvcConfigurerAdapter() {
         halObjectMapper.registerModule(KotlinModule())
         val jsonHalConverter = MappingJackson2HttpMessageConverter()
         jsonHalConverter.supportedMediaTypes = Arrays.asList(
-                MediaType("application", "transfer+json", StandardCharsets.UTF_8),
                 MediaType("application", "hal+json", StandardCharsets.UTF_8),
                 MediaType("application", "*+hal+json", StandardCharsets.UTF_8),
                 MediaType("application", "json", StandardCharsets.UTF_8))
