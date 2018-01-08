@@ -44,7 +44,7 @@ class ContactAdapterHal :
 }
 
 @Component("contactsAdapter")
-class ContactsAdaptrHal:
+class ContactsAdapterHal:
         ResourceAssemblerSupport<List<ContactSummaryDto>, ContactsResource>(
                 ContactRestPort::class.java,
                 ContactsResource::class.java),
@@ -56,7 +56,6 @@ class ContactsAdaptrHal:
                     val csr = ContactSummaryResource(cs.name, cs.email, cs.state)
                     csr.add(linkTo(methodOn(ContactRestPort::class.java).getContact(cs.id)).withSelfRel())
                     csr.add(linkTo(methodOn(ContactRestPort::class.java).getContacts()).withRel("parent"))
-
                     csr
                 })
 

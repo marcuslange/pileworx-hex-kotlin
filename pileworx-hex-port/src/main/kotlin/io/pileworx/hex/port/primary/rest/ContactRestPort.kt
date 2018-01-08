@@ -13,30 +13,24 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping(value = "/contacts", produces = arrayOf("application/hal+json"))
+@RequestMapping(value = ["/contacts"], produces = ["application/hal+json"])
 class ContactRestPort(
         val contactService: ContactService,
         val contactAdapter: ContactAdapter,
         val contactsAdapter: ContactsAdapter) {
 
-    @RequestMapping(value = "", method = arrayOf(RequestMethod.GET))
-    fun getContacts(): HttpEntity<ContactsResource> {
-        return ResponseEntity<ContactsResource>(
-                contactsAdapter.toResource(
-                        contactService.findAll()), HttpStatus.OK)
-    }
+    @RequestMapping(value = [""], method = [(RequestMethod.GET)])
+    fun getContacts() = ResponseEntity<ContactsResource>(
+            contactsAdapter.toResource(contactService.findAll()),
+            HttpStatus.OK)
 
-    @RequestMapping(value = "/{id}", method = arrayOf(RequestMethod.GET))
-    fun getContact(@PathVariable id:String): HttpEntity<ContactResource> {
-        return ResponseEntity<ContactResource>(
-                contactAdapter.toResource(
-                        contactService.findById(id)), HttpStatus.OK)
-    }
+    @RequestMapping(value = ["/{id}"], method = [(RequestMethod.GET)])
+    fun getContact(@PathVariable id:String) = ResponseEntity<ContactResource>(
+            contactAdapter.toResource(contactService.findById(id)),
+            HttpStatus.OK)
 
-    @RequestMapping(method = arrayOf(RequestMethod.POST))
-    fun postContact(@RequestBody command: CreateContactJackson): HttpEntity<ResourceSupport> {
-        return ResponseEntity<ResourceSupport>(
-                contactAdapter.createLink(
-                        contactService.createContact(command).value), HttpStatus.CREATED)
-    }
+    @RequestMapping(method = [(RequestMethod.POST)])
+    fun postContact(@RequestBody command: CreateContactJackson) = ResponseEntity<ResourceSupport>(
+            contactAdapter.createLink(contactService.createContact(command).value),
+            HttpStatus.CREATED)
 }

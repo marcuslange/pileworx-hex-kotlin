@@ -9,7 +9,5 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class DomainContext {
     @Bean
-    fun couchbase(bucket:Bucket): Couchbase {
-        return Couchbase(bucket)
-    }
+    fun couchbase(bucket:Bucket) = Couchbase(bucket)
 }

@@ -16,7 +16,6 @@ import javax.annotation.Resource
 class AmqpContext(private val halObjectMapper: ObjectMapper) {
 
     @Bean
-    fun jackson2JsonMessageConverter(): MessageConverter {
-        return Jackson2JsonMessageConverter(halObjectMapper)
-    }
+    fun jackson2JsonMessageConverter(): MessageConverter =
+            Jackson2JsonMessageConverter(halObjectMapper)
 }

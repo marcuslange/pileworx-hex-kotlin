@@ -11,9 +11,9 @@ import io.pileworx.hex.common.domain.RepositoryException
 import java.io.IOException
 
 abstract class CouchbaseRepositoryAbstract<T, TID>(
-        protected val bucket:Bucket,
-        protected val typeParameterClass: Class<T>,
-        protected val jsonMapper: ObjectMapper):
+        open protected val bucket: Bucket,
+        open protected val typeParameterClass: Class<T>,
+        open protected val jsonMapper: ObjectMapper):
     Repository<T, TID> where T: AggregateRoot<TID>, TID: Id {
 
     override fun find(id:TID): T {
@@ -24,7 +24,7 @@ abstract class CouchbaseRepositoryAbstract<T, TID>(
         bucket.insert(RawJsonDocument.create(aggregateRoot.id.value, writeDoc(aggregateRoot)))
     }
 
-    protected fun readDoc(source: String): T {
+    open protected fun readDoc(source: String): T {
         try {
             return jsonMapper.readValue(source, typeParameterClass)
         } catch (e: IOException) {
@@ -33,7 +33,7 @@ abstract class CouchbaseRepositoryAbstract<T, TID>(
         }
     }
 
-    protected fun writeDoc(source: T): String {
+    open protected fun writeDoc(source: T): String {
         try {
             return jsonMapper.writeValueAsString(source)
         } catch (e: JsonProcessingException) {

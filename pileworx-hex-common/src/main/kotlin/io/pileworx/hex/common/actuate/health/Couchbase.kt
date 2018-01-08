@@ -19,8 +19,7 @@ class Couchbase(val bucket:Bucket) : HealthIndicator {
                 throw RuntimeException("Failed to receive positive ping from server.")
 
         } catch (rex:RuntimeException) {
-            return Health.down()
-                    .withDetail("Ping Failed", rex.message).build()
+            return Health.down().withDetail("Ping Failed", rex.message).build()
         }
 
         return Health.up().build()

@@ -12,14 +12,12 @@ class ContactListenerPort(
         private val contactService: ContactService,
         private val rabbitTemplate: RabbitTemplate) {
 
-    @RabbitListener(queues = arrayOf("newContact"))
+    @RabbitListener(queues = ["newContact"])
     fun createContact(command:CreateContactMessage) {
         val id = contactService.createContact(command).value
 
-        this.rabbitTemplate.convertAndSend(
+        rabbitTemplate.convertAndSend(
                 "contactCreated",
-                ContactLocationMessage(
-                        command.requestId,
-                        "http://localhost:8080/contacts/$id"))
+                ContactLocationMessage(command.requestId, "http://localhost:8080/contacts/$id"))
     }
 }

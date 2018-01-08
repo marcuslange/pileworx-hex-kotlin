@@ -27,9 +27,7 @@ class ContactFinderCB(
     }
 
     override fun findById(id:String): ContactDto {
-        val row = bucket.query(ViewQuery.from("contacts", "contact"))
-                .filter { r -> r.id() == id }
-                .first()
+        val row = bucket.query(ViewQuery.from("contacts", "contact")).first { r -> r.id() == id }
 
         return readDoc(row.value().toString())
     }

@@ -5,7 +5,9 @@ import io.pileworx.hex.app.dto.NameDto
 import io.pileworx.hex.app.dto.PhoneDto
 import org.springframework.hateoas.ResourceSupport
 
-class ContactsResource(val _embedded:List<ContactSummaryResource>): ResourceSupport()
+class ContactsResource(
+        val _embedded:List<ContactSummaryResource>
+): ResourceSupport()
 
 class ContactSummaryResource(
         val title:String,

@@ -5,9 +5,9 @@ import io.pileworx.hex.common.domain.Id
 import io.pileworx.hex.common.domain.Repository
 import io.pileworx.hex.domain.contact.*
 
-interface ContactId : Id
+interface ContactId: Id
 
-interface Contact : AggregateRoot<ContactId> {
+interface Contact: AggregateRoot<ContactId> {
     companion object {
         fun create(id:ContactId, cmd:CreateContact): Contact = ContactJackson(
                 id as ContactIdJackson,
@@ -19,4 +19,4 @@ interface Contact : AggregateRoot<ContactId> {
     }
 }
 
-interface ContactRepository : Repository<Contact, ContactId>
+interface ContactRepository: Repository<Contact, ContactId>

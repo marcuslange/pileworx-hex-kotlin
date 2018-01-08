@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-@RequestMapping(value = "", produces = arrayOf("application/hal+json"))
+@RequestMapping(value = [""], produces = ["application/hal+json"])
 class EntryRestPort {
 
-    @RequestMapping(value = "", method = arrayOf(RequestMethod.GET))
+    @RequestMapping(value = [""], method = [(RequestMethod.GET)])
     fun getEntry(): HttpEntity<ResourceSupport> {
         val er = ResourceSupport()
         er.add(linkTo(methodOn(EntryRestPort::class.java).getEntry()).withSelfRel())

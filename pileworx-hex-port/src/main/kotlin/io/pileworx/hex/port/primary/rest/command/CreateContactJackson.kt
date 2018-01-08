@@ -14,4 +14,5 @@ data class CreateContactJackson(
         override val phoneOne: String,
         override val phoneTwo: String,
         override val phoneThree: String,
-        override val email: String): CreateContact
+        override val email: String
+): CreateContact

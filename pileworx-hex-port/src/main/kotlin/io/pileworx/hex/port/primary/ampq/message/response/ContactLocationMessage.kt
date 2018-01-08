@@ -4,4 +4,5 @@ import java.io.Serializable
 
 data class ContactLocationMessage(
         val requestId:String,
-        val contactUri:String): Serializable
+        val contactUri:String
+): Serializable
